@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<title>Car Match</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+    crossorigin="anonymous">
+
+<body>
+
+    <!-- Navbar -->
+    <div class="w3-top">
+        <div class="w3-bar menuColor" id="myNavbar">
+            <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-large" href="javascript:void(0);"
+                onclick="toggleFunction()" title="Toggle Navigation Menu">
+                <i class="fa fa-bars"></i>
+            </a>
+            <a href="#home" class="w3-bar-item w3-button w3-hide-small">
+                <i class="fa fa-home"></i>HOME</a>
+            <a href="#about" class="w3-bar-item w3-button w3-hide-small">
+                <i class="fa fa-question"></i> ABOUT</a>
+            <a href="#getStarted" class="w3-bar-item w3-button w3-hide-small">
+                <i class="fa fa-car"></i> GET STARTED</a>
+            <a href="#contact" class="w3-bar-item w3-button w3-hide-small">
+                <i class="fa fa-envelope"></i> CONTACT</a>
+            <a href="#dealerDiv" class="w3-bar-item w3-button w3-hide-small">
+                <i class="fa fa-envelope"></i> DEALER INFO</a>
+        </div>
+
+        <!-- Navbar on small screens -->
+        <div id="navDemo" class="w3-bar-block w3-hide w3-hide-large w3-hide-medium w3-white">
+            <a href="#home" class="w3-bar-item w3-button" onclick="toggleFunction()">HOME</a>
+            <a href="#about" class="w3-bar-item w3-button" onclick="toggleFunction()">ABOUT</a>
+            <a href="#getStarted" class="w3-bar-item w3-button" onclick="toggleFunction()">GET STARTED</a>
+            <a href="#contact" class="w3-bar-item w3-button" onclick="toggleFunction()">CONTACT</a>
+        </div>
+    </div>
+
+    <div class="txt">
+        <!-- First Image -->
+        <div class="img1 w3-display-container animation " id="home">
+            <div class="w3-display-middle">
+                <span class=" full-txt w3-center w3-padding-large w3-black w3-xlarge w3-wide w3-animate-opacity w3-hide-small">
+                    Find a car dealer that is best for you!</span>
+                <label class="short-txt w3-hide-large w3-hide-medium w3-center w3-padding-large w3-black w3-xlarge w3-wide w3-animate-opacity">
+                    Find a car dealer</label>
+            </div>
+        </div>
+
+        <!-- "ABOUT US" content -->
+        <div class="w3-content w3-container w3-padding-64 w3-center" id="about">
+            <h3>ABOUT US</h3>
+            <p>We are committed to finding you a car dealer that is best suited for your needs! Lorem ipsum dolor sit
+                amet consectetur
+                adipisicing elit. Minus quas ut enim soluta nam quasi similique laboriosam cum eius corrupti ullam vero
+                reprehenderit,
+                aperiam necessitatibus fuga voluptas tempore quaerat rem? Lorem ipsum dolor sit amet consec tetur
+                adipisicing
+                elit. Dolor maxime dolorum impedit? Itaque expedita, aliquam impedit esse asperiores aut, rer um
+                accusamus
+                iste incidunt quos officiis nesciunt cumque autem tempora consectetur. Lorem ipsum dolor sit amet
+                nsectetur
+                adipisicing elit. Nobis, dolor culpa molestiae ratione laudantium adipisci minima debitis neque quaer
+                at
+                rem illum nemo reprehenderit voluptas quidem nihil, amet odit harum deleniti.</p>
+        </div>
+
+        <!-- "GET STARTED" content -->
+        <div class="w3-content w3-container w3-padding-64 w3-center" id="getStarted">
+            <h3 class="w3-center">GET STARTED</h3>
+            <p>Simply select a year, make, and model and CarFind will match you with local dealerships based on your
+                selection of
+                vehicle, credit score and income. Once presented with your available options, indicate your
+                communication
+                preference.
+
+            </p>
+
+
+            <div id="yearDiv"></div>
+
+            <div id="makeDiv"></div>
+
+            <div id="modelDiv"></div>
+
+
+            <br><br>
+            Credit Score: <br> <input type="text" id="creditScore" size="3" maxlength="3" style="width:9%;" />
+            <br><br>
+            Monthly gross income: <br> <input type="text" id="income" size="5" maxlength="5" style="width:9%;" />
+            <br>
+
+
+            <button class="w3-button w3-round-xxlarge w3-blue w3-hover-red" style="width:15%; margin-top:2%;">Find
+                dealership</button>
+
+        </div>
+
+
+    <!-- Second image -->
+    <div class="img2 w3-display-container w3-opacity-min" id="contactUs">
+        <div class="w3-display-middle" style="white-space:nowrap;">
+            <span class="w3-center w3-padding-large w3-black w3-xlarge w3-wide w3-animate-opacity">Contact us</span>
+        </div>
+    </div>
+
+    <!-- "CONTACT US" content -->
+    <div class="w3-content w3-container w3-padding-64" id="contact">
+        <h3 class="w3-center">Problem?</h3>
+        <p class="w3-center">
+            <em>Let us Know!</em>
+        </p>
+        <p class="w3-center">
+            Phone: 555-666-7777
+            <br> Email: ExampleEmail@email.com
+        </p>
+    </div>
+
+    <div id="dealerDiv" class="w3-center">
+        <h3 id="dealerHead" class="">DEALER INFORMATION</h3>
+        Name: <br> <input type="text" id="dealerName" size="30" maxlength="50"/> <br><br>
+        Address: <br> <input type="text" id="dealerAddress" size="30" maxlength="50"/> <br><br>
+        City: <br> <input type="text" id="dealerCity" size="30" maxlength="30"/> <br><br>
+        State: <br> <input type="text" id="dealerState" size="3" maxlength="2"/> <br><br>
+        Zip: <br> <input type="text" id="dealerZip" size="6" maxlength="5"/> <br><br>
+        Phone: <br> <input type="text" id="dealerPhone" size="13" maxlength="12" /> <br><br>
+        Phone ext: <br> <input type="text" id="dealerPhoneExt" size="6" maxlength="5" /> <br><br>
+
+        <button id="btnAddDealer" class="w3-button w3-round-xxlarge w3-blue w3-hover-red" style="width:15%; margin-top:2%;">Add Dealership</button>
+    </div>
+
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="./js/app.js"></script>
+    <script src="./js/dealer.js"></script>
+
+
+</body>
+
+</html>

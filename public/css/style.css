@@ -1,0 +1,91 @@
+
+body, html {
+    height: 100%;
+    color: #777;
+    line-height: 1.8;
+}   
+
+/* Scrolling effect for images */
+.img1, .img2 {
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+/* First image */
+.img1 {
+    background-image: url('../image/CarGroup.jpg');
+    min-height: 100%;
+}
+
+/* Second image */
+.img2 {
+    background-image: url("../image/ContactUs.jpg");
+    min-height: 400px;
+}
+
+.w3-wide {
+    letter-spacing: 10px;
+}
+
+.w3-hover-opacity {
+    cursor: pointer;
+}
+
+.w3-top {
+    background-image: linear-gradient(to right, rgb(97, 84, 84) , rgb(39, 39, 36));
+}
+
+.menuColor {
+    color: white;
+}
+
+.full-txt {
+    white-space: nowrap;
+}
+
+.txt {
+    font-family: 'Lora', 'sarif';
+}
+
+.navDemo
+
+
+/* Image text inside of first image */
+#imgTxt {
+    white-space: nowrap;
+}
+
+ /*Turn off parallax scrolling for tablets and phones*/
+@media only screen and (max-device-width: 1600px) {
+    div.img1, div.img2 {
+        background-attachment: scroll;
+        min-height: 400px;
+    }
+}
+
+
+/*
+@media screen and (min-width:300px){
+    div.img1, div.img2 {width: 300px;}
+  }
+
+  @media screen and (min-width:400px){
+    div.img1, div.img2 {width: 400px;}
+  }
+
+  @media screen and (min-width:600px){
+    div.img1, div.img2 {width: 600px;}
+  }
+
+@media screen and (max-width:1024px){
+    div.img1, div.img2 {width: 1024px;}
+  }
+
+  @media screen and (max-width:1600px){
+    div.img1, div.img2 {width: 1600px;}
+  }
+  
+  img.responsive{height: auto;}
+*/
