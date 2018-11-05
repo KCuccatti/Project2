@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Find a car(Admin Page)</title>
+
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/ng-table@2.0.2/bundles/ng-table.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.0/dist/semantic.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+</head>
+
+<!-- ng-app secifies that this is an angular app-->
+<!-- ng-controller declares that we will be using a controller that we have named DealerCtrl -->
+<body ng-app="app" ng-controller="DealerCtrl">
+
+    <!-- Navbar -->
+    <div class="w3-top">
+        <div class="w3-bar menuColor" id="myNavbar">
+            <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-large" href="javascript:void(0);"
+                onclick="toggleFunction()" title="Toggle Navigation Menu">
+                <i class="fa fa-bars"></i>
+            </a>
+            <a href="#home" class="w3-bar-item w3-button w3-hide-small">
+                <i class="fa fa-home"></i>Home</a>
+
+            <!-- Navbar on small screens -->
+            <div id="navDemo" class="w3-bar-block w3-hide w3-hide-large w3-hide-medium w3-white">
+                <a href="#home" class="w3-bar-item w3-button" onclick="toggleFunction()">HOME</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Image -->
+    <div class="img1 w3-display-container" id="home">
+        <div class="w3-display-middle">
+            <span class=" full-txt w3-center w3-padding-large w3-black w3-xlarge w3-wide w3-hide-small">
+                Admin page</span>
+            <label class="short-txt w3-hide-large w3-hide-medium w3-center w3-padding-large w3-black w3-xlarge w3-wide w3-animate-opacity">
+                Admin Page</label>
+        </div>
+    </div>
+
+    <!-- Begging of Angularjs to create table -->
+    <div class="dealerTableDiv">
+        <table ng-table="tableParams" show-filter="true" class="dealerTable">
+            <tr>
+                <td><input class="searchBox" ng-model="search.name" placeholder="Search for name" /></td>
+                <td><input class="searchBox" ng-model="search.address" placeholder="Search for address" /></td>
+                <td><input class="searchBox" ng-model="search.city" placeholder="Search for city" /></td>
+                <td colspan="5"><button class="w3-button w3-round-xxlarge w3-blue w3-hover-red btnAddDealer">Add
+                        dealer</button></td>
+            </tr>
+            <tr>
+                <th class="w3-hide">Id</th>
+                <th>Name</th>
+                <th>Address</th>
+                <th>City</th>
+                <th>State</th>
+                <th>Zip</th>
+                <th>Phone</th>
+                <th>Ext</th>
+            </tr>
+
+            <!-- When a row is clicked, call the processData method in the controller, passing it the
+                data (delaer) for the row that was clicked -->
+            <tr class="dealerData" ng-repeat="dealer in dealers | filter:search" 
+                ng-class-odd="'odd'" ng-class-even="'even'" ng-click="processData(dealer)">
+                <td class="w3-hide">{{dealer.id}}</td>
+                <td class="dealerNameBld">{{dealer.name}}</td>
+                <td>{{dealer.address}}</td>
+                <td>{{dealer.city}}</td>
+                <td>{{dealer.state}}</td>
+                <td>{{dealer.zip}}</td>
+                <td>{{dealer.phone}}</td>
+                <td>{{dealer.phone_ext}}</td>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <!-- End of Angularjs to create table -->
+
+    <!-- Div containing dealer information to update and add -->
+    <div class="dealerInputDiv w3-center">
+        <div>
+            <h2>DEALER INFORMATION:</h2>
+            <input class="w3-hide" ng-model="id" type="text" id="dealerId">
+            <input ng-model="name" type="text" id="dealerName" size="40" maxlength="50" placeholder="Dealer Name"><br><br>
+            <input ng-model="address" type="text" id="dealerAddress" size="40" maxlength="50" placeholder="Address"><br><br>
+            <input ng-model="city" type="text" id="dealerCity" size="20" maxlength="30" placeholder="City">
+            <input ng-model="state" type="text" id="dealerState" size="3" maxlength="2" placeholder="State">
+            <input ng-model="zip" type="text" id="dealerZip" size="5" maxlength="5" placeholder="Zip"><br><br>
+            <input ng-model="phone" type="text" id="dealerPhone" size="12" maxlength="12" placeholder="Phone">
+            <input ng-model="phoneExt" type="text" id="dealerPhoneExt" size="4" maxlength="4" placeholder="Ext."><br><br>
+            <button class="w3-button w3-round-xxlarge w3-blue w3-hover-red btnSaveDealer">Save</button>
+            <button class="w3-button w3-round-xxlarge w3-blue w3-hover-red btnUpdateDealer">Update Dealer</button>
+            <button class="w3-button w3-round-xxlarge w3-blue w3-hover-red btnViewDealers">View Dealers</button>
+        </div>
+    </div>
+
+
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.6.6/angular.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.6.6/angular-resource.min.js"></script>
+    <script src="http://unpkg.com/ng-table@2.0.2/bundles/ng-table.min.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.0/dist/semantic.min.js"></script>
+
+    <script src="js/myApp.js"></script>
+    <script src="js/dealerCtrl.js"></script>
+    <script src="js/dealerSrvc.js"></script>
+
+    <script src="js/dealer.js"></script>
+</body>
+
+</html>

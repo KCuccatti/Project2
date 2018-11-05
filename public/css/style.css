@@ -13,13 +13,11 @@ body, html {
     background-size: cover;
 }
 
-/* First image */
 .img1 {
     background-image: url('../image/CarGroup.jpg');
     min-height: 100%;
 }
 
-/* Second image */
 .img2 {
     background-image: url("../image/ContactUs.jpg");
     min-height: 400px;
@@ -49,15 +47,74 @@ body, html {
     font-family: 'Lora', 'sarif';
 }
 
-.navDemo
+.dealerNameBld {
+    font-size: 1.4em;
+}
 
+.dealerName {
+    color:red;
+}
 
-/* Image text inside of first image */
+.odd{
+    background-color: rgb(246, 248, 247);
+}
+
+.even {
+    background-color: rgb(179, 212, 243);
+}
+
+.dealerTable {
+    margin: auto;
+    width: 50%;
+}
+
+.dealerInputDiv {
+    display: none;
+}
+
+.dealerTableDiv {
+    display: none;
+}
+
+.btnAddDealer {
+    margin-right: 10%
+}
+
+.make, .year, .model{
+    margin-top: 30%;
+}
+
+.vehicleDropDiv {
+    width:10%;
+    margin-left:45%;
+}
+
+.income{
+    width:10%;
+}
+
+.btnSearchMore {
+    width:15%; 
+    margin-top:2%
+}
+
 #imgTxt {
     white-space: nowrap;
 }
 
- /*Turn off parallax scrolling for tablets and phones*/
+#about, #getStartedTxt, #contact {
+    font-size: 2em;
+}
+
+#dealerDiv {
+    display:none;
+}
+
+#btnFindVehicles {
+    margin-top: 15px;
+    margin-right: 15px;
+}
+
 @media only screen and (max-device-width: 1600px) {
     div.img1, div.img2 {
         background-attachment: scroll;
@@ -65,27 +122,27 @@ body, html {
     }
 }
 
+@media screen and (min-width:360px){
+    .year, .make, .model {
+        width:80px;
+        margin-left: -20px;
+    }   
 
-/*
-@media screen and (min-width:300px){
-    div.img1, div.img2 {width: 300px;}
-  }
+    #btnFindVehicles {
+        width: 120px;
+        margin-left: 20px
+    }
 
-  @media screen and (min-width:400px){
-    div.img1, div.img2 {width: 400px;}
-  }
+    .income {
+        width: 80px;
+    }
 
-  @media screen and (min-width:600px){
-    div.img1, div.img2 {width: 600px;}
-  }
+    .btnSearchMore {
+        width:120px;
+    }
+}
 
-@media screen and (max-width:1024px){
-    div.img1, div.img2 {width: 1024px;}
-  }
 
-  @media screen and (max-width:1600px){
-    div.img1, div.img2 {width: 1600px;}
-  }
+
+
   
-  img.responsive{height: auto;}
-*/
