@@ -5,10 +5,8 @@ var dealerCity = '';
 var dealerState = '';
 var dealerZip = '';
 var dealerPhone = '';
-var dealerPhoneExt = '';
 var dealerShow = '';
 var dealerHtml = '';
-var dealerId = '';
 
 // Show table on load of page
 $('.dealerTableDiv').show();
@@ -30,12 +28,12 @@ $('.btnSaveDealer').on('click', function () {
     dealerState = $('#dealerState').val();
     dealerZip = $('#dealerZip').val();
     dealerPhone = $('#dealerPhone').val();
-    dealerPhoneExt = $('#dealerPhoneExt').val();
 
     $.when(ajaxAddDealer()).done(function (a1) {
         window.location.href="/AddDealer";
     })
 })
+
 
 // On click of 'Update Dealer' button, show and hide necessary elements, get the values of 
 // dealer info to update and reload table
@@ -49,7 +47,6 @@ $('.btnUpdateDealer').on('click', function() {
     dealerState = $('#dealerState').val();
     dealerZip = $('#dealerZip').val();
     dealerPhone = $('#dealerPhone').val();
-    dealerPhoneExt = $('#dealerPhoneExt').val();
     $.when(ajaxUpdateDealer()).done(function (a1) {
         window.location.href="/AddDealer";
     })
@@ -63,20 +60,20 @@ $('.btnViewDealers').on('click', function() {
 
 // Call the back end to add dealer info to db
 function ajaxAddDealer() {
-    console.log("made it to add dealer ajax");
     return $.ajax({
         type: "POST",
-        url: `/api/AddDealer/${dealerName}&${dealerAddress}&${dealerCity}&${dealerState}&${dealerZip}&${dealerPhone}&${dealerPhoneExt}`,
+        url: `/api/AddDealer/${dealerName}&${dealerAddress}&${dealerCity}&${dealerState}&${dealerZip}&${dealerPhone}`,
         datatype: "json",
     });
 }
 
 // Call back end with request to update existing dealer from db
 function ajaxUpdateDealer() {
-    console.log("Made it to update ajax");
+    alert('ID of record to be updated is: ' + dealerId);
+    
     return $.ajax({
         type: "PUT",
-        url: `/api/UpdateDealer/${dealerId}&${dealerName}&${dealerAddress}&${dealerCity}&${dealerState}&${dealerZip}&${dealerPhone}&${dealerPhoneExt}`,
+        url: `/api/UpdateDealer/${dealerId}&${dealerName}&${dealerAddress}&${dealerCity}&${dealerState}&${dealerZip}&${dealerPhone}`,
         datatype: "json",
     });
 }

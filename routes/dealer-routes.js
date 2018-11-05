@@ -12,7 +12,7 @@ module.exports = function (myApp) {
         operatorsAliases: false,
     });
 
-    
+
     // Gets dealers from db ordering by name
     myApp.get('/api/GetDealers/', function (req, res) {
         let getDealerQuery = 'SELECT * FROM Dealers ORDER BY name';
@@ -25,19 +25,19 @@ module.exports = function (myApp) {
                 res.json({ error: error });
             });
     });
-    
+
 
 
     // Add dealer information to db 
-    myApp.post('/api/AddDealer/:name&:address&:city&:state&:zip&:phone&:phoneExt', function (req, res) {
+    myApp.post('/api/AddDealer/:name&:address&:city&:state&:zip&:phone', function (req, res) {
         console.log("inside of post");
-        let addDealerQuery = 'INSERT INTO Dealers (name, address, city, state, zip, phone, phone_ext) VALUES' +
-            ' (:name, :address, :city, :state, :zip, :phone,:phoneExt)';
+        let addDealerQuery = 'INSERT INTO Dealers (name, address, city, state, zip, phone) VALUES' +
+            ' (:name, :address, :city, :state, :zip, :phone)';
         sequelize.query(addDealerQuery,
             {
                 replacements: {
                     name: req.params.name, address: req.params.address, city: req.params.city, state: req.params.state,
-                    zip: req.params.zip, phone: req.params.phone, phoneExt: req.params.phoneExt
+                    zip: req.params.zip, phone: req.params.phone
                 },
                 type: sequelize.QueryTypes.INSERT
             }
@@ -50,17 +50,17 @@ module.exports = function (myApp) {
         });
     });
 
-    
+
     // Update existing dealer in db 
-    myApp.put('/api/UpdateDealer/:id&:name&:address&:city&:state&:zip&:phone&:phoneExt', function (req, res) {
+    myApp.put('/api/UpdateDealer/:id&:name&:address&:city&:state&:zip&:phone', function (req, res) {
         console.log("Made it to update backend");
         let updateDealerQuery = 'UPDATE Dealers SET name = :name, address=:address, city=:city, state=:state, zip=:zip, ' +
-            'phone=:phone, phone_ext=:phoneExt WHERE id=:id';
+            'phone=:phone WHERE id=:id';
         sequelize.query(updateDealerQuery,
             {
                 replacements: {
                     id: req.params.id, name: req.params.name, address: req.params.address, city: req.params.city, state: req.params.state,
-                    zip: req.params.zip, phone: req.params.phone, phoneExt: req.params.phoneExt
+                    zip: req.params.zip, phone: req.params.phone
                 },
                 type: sequelize.QueryTypes.UPDATE
             }
@@ -73,4 +73,22 @@ module.exports = function (myApp) {
         });
     });
 
+    // Delete existing dealer in db 
+    myApp.delete('/api/DeleteDealer/:id', function (req, res) {
+        let deleteDealerQuery = 'DELETE FROM Dealers WHERE id=:id';
+        sequelize.query(deleteDealerQuery,
+            {
+                replacements: {
+                    id: req.params.id, 
+                },
+                type: sequelize.QueryTypes.DELETE
+            }
+        ).then(function (response) {
+            res.json(response);
+        }).catch(function (error) {
+            console.log("AN ERROR OCCURED WHILE DELETING DEALER INFO");
+            console.log(error);
+            res.json({ error: error });
+        });
+    });
 }

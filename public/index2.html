@@ -41,7 +41,7 @@
     <!-- Image -->
     <div class="img1 w3-display-container" id="home">
         <div class="w3-display-middle">
-            <span class=" full-txt w3-center w3-padding-large w3-black w3-xlarge w3-wide w3-hide-small">
+            <span class="full-txt w3-center w3-padding-large w3-black w3-xlarge w3-wide w3-hide-small">
                 Admin page</span>
             <label class="short-txt w3-hide-large w3-hide-medium w3-center w3-padding-large w3-black w3-xlarge w3-wide w3-animate-opacity">
                 Admin Page</label>
@@ -52,10 +52,10 @@
     <div class="dealerTableDiv">
         <table ng-table="tableParams" show-filter="true" class="dealerTable">
             <tr>
-                <td><input class="searchBox" ng-model="search.name" placeholder="Search for name" /></td>
-                <td><input class="searchBox" ng-model="search.address" placeholder="Search for address" /></td>
-                <td><input class="searchBox" ng-model="search.city" placeholder="Search for city" /></td>
-                <td colspan="5"><button class="w3-button w3-round-xxlarge w3-blue w3-hover-red btnAddDealer">Add
+                <td><input class="nameSearchBox" ng-model="search.name" placeholder="Search for name"/></td>
+                <td><input class="addressSearchBox" ng-model="search.address" placeholder="Search for address"/></td>
+                <td><input class="citySearchBox" ng-model="search.city" placeholder="Search for city"/></td>
+                <td colspan="4"><button class="w3-button w3-round-xxlarge w3-blue w3-hover-red btnAddDealer">Add
                         dealer</button></td>
             </tr>
             <tr>
@@ -66,7 +66,6 @@
                 <th>State</th>
                 <th>Zip</th>
                 <th>Phone</th>
-                <th>Ext</th>
             </tr>
 
             <!-- When a row is clicked, call the processData method in the controller, passing it the
@@ -80,7 +79,6 @@
                 <td>{{dealer.state}}</td>
                 <td>{{dealer.zip}}</td>
                 <td>{{dealer.phone}}</td>
-                <td>{{dealer.phone_ext}}</td>
                 </td>
             </tr>
         </table>
@@ -97,13 +95,17 @@
             <input ng-model="city" type="text" id="dealerCity" size="20" maxlength="30" placeholder="City">
             <input ng-model="state" type="text" id="dealerState" size="3" maxlength="2" placeholder="State">
             <input ng-model="zip" type="text" id="dealerZip" size="5" maxlength="5" placeholder="Zip"><br><br>
-            <input ng-model="phone" type="text" id="dealerPhone" size="12" maxlength="12" placeholder="Phone">
-            <input ng-model="phoneExt" type="text" id="dealerPhoneExt" size="4" maxlength="4" placeholder="Ext."><br><br>
+            <input ng-model="phone" type="text" id="dealerPhone" size="12" maxlength="12" placeholder="Phone"><br><br>
             <button class="w3-button w3-round-xxlarge w3-blue w3-hover-red btnSaveDealer">Save</button>
             <button class="w3-button w3-round-xxlarge w3-blue w3-hover-red btnUpdateDealer">Update Dealer</button>
             <button class="w3-button w3-round-xxlarge w3-blue w3-hover-red btnViewDealers">View Dealers</button>
+            <button class="w3-button w3-round-xxlarge w3-blue w3-hover-red btnDeleteDealer" ng-click="DeleteDealer(id)">Delete Dealer</button>
+
         </div>
     </div>
+
+
+    
 
 
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.6.6/angular.min.js"></script>

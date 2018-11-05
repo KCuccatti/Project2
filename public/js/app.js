@@ -20,7 +20,7 @@ $.when(ajaxGetVehicleYears()).done(function (a1) {
 
 
 // On change of vehicle year drop down, populate vehicle make dropdown based on 
-// the year the user just selected
+// the year the user selected
 $(document).on('change', '.year', function () {
     year = $(this).find('option:selected').val();
 
@@ -30,7 +30,7 @@ $(document).on('change', '.year', function () {
     })
 
     // On change of vehicle make drop down, populate vehicle model dropdown based on 
-    // the make the user just selected
+    // the make the user selected
     $(document).on('change', '.make', function () {
         make = $(this).find('option:selected').val();
         $.when(ajaxGetModelsForYearAndMake()).done(function (a1) {
@@ -38,7 +38,7 @@ $(document).on('change', '.year', function () {
         })
     })
 
-    // On change of vehicle model, populate the income div
+    // On change of vehicle model, show the income div
     $(document).on('change', '.model', function () {
         $('.incomeBox').show();
     })
@@ -53,16 +53,16 @@ $('#btnFindVehicles').on('click', function () {
     income = $('.income').val();
     model = $('.model').find('option:selected').val();
 
-    // When ajax call for finding car is done, populate carMatch div with html for matching cars
-    // and show the 'Search again' button.
+    // When ajax call for finding car(s) is done, populate carMatch div with html for matching cars
+    // and show the 'Search again' button
     $.when(ajaxFindCar()).done(function (a1) {
         $('.carMatch').html(matchingCarsHtml);
         $('.btnSearchMore').show();
     })
 })
 
-// On click of the 'Search again' button, hide and show necessary elements, and get values for 
-// necessary user inputs
+// On click of the 'Search again' button, hide and show necessary elements, and set values for 
+// necessary user inputs to nothing
 $('.btnSearchMore').on('click', function () {
     $('.btnSearchMore').hide();
     $('#btnFindVehicles').show();
@@ -108,7 +108,7 @@ function ajaxGetMakesForYear() {
     });
 }
 
-// Populate html drop down with available vehicle models based on selected make
+// Populate html drop down with available vehicle makes based on selected year
 function getMakesForYear(response) {
     makeHtml = `<select class="w3-select w3-border w3-animate-zoom make">`;
     makeHtml += `<option value="" disabled selected>Make</option>`;
@@ -151,7 +151,7 @@ function ajaxFindCar() {
 }
 
 // Populate html for a car match. Also check if another dealer has the same 
-// make and model for selected car. If so, display only image of car, price, 
+// make and model for selected car. If so, display only the image of car, price, 
 // mileage and stock number. If not, continue to the next dealer if there is one.
 function findCar(response) {
     let prevDealer = '';

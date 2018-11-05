@@ -76,17 +76,13 @@ body, html {
     display: none;
 }
 
-.btnAddDealer {
-    margin-right: 10%
-}
-
-.make, .year, .model{
+.make, .year, .model {
     margin-top: 30%;
 }
 
 .vehicleDropDiv {
     width:10%;
-    margin-left:45%;
+    margin-left:47%;
 }
 
 .income{
@@ -96,6 +92,14 @@ body, html {
 .btnSearchMore {
     width:15%; 
     margin-top:2%
+}
+
+.btnAddDealer {
+    margin-right: 10%
+}
+
+.nameSearchBox {
+    margin-left: 50px;
 }
 
 #imgTxt {
@@ -112,7 +116,7 @@ body, html {
 
 #btnFindVehicles {
     margin-top: 15px;
-    margin-right: 15px;
+    margin-right: 12px;
 }
 
 @media only screen and (max-device-width: 1600px) {
@@ -130,15 +134,20 @@ body, html {
 
     #btnFindVehicles {
         width: 120px;
-        margin-left: 20px
+        margin-right: -18px
     }
 
     .income {
         width: 80px;
+        margin-right: -22px;
     }
 
     .btnSearchMore {
         width:120px;
+    }
+
+    .short-txt {
+        white-space: nowrap;
     }
 }
 

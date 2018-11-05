@@ -1,4 +1,4 @@
-// Import tables in models
+// Import in models 
 const db = require('../models');
 
 // Allows routes to be used outside of this file
@@ -62,9 +62,10 @@ module.exports = function (myApp) {
         });
     });
 
+    
     myApp.get('/api/FindCar/:year&:make&:model&:income', function (req, res) {
         console.log('Inside of get route for car');
-        let carQuery = 'SELECT D.name, D.address, D.city, D.state, D.zip, D.phone, D.phone_ext,' + 
+        let carQuery = 'SELECT D.name, D.address, D.city, D.state, D.zip, D.phone,' + 
                        '       DI.year, DI.make, DI.model, DI.stock_number, DI.mileage, DI.income, DI.image, DI.price ' +
                        'FROM DealerInventory AS DI ' +
                        '   INNER JOIN Dealers AS D ON DI.dealer_id = D.id ' +
