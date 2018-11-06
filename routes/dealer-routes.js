@@ -1,33 +1,21 @@
 // Import tables in models
 const db = require('../models');
-const mysql = require("mysql2");
-
-
-// Establish connection to db
-if(process.env.JAWSDB_URL) {
-    config = process.env.JAWSDB_URL
- }
- else{
-    config = {
-        host: 'localhost',
-        port: 3306,
-        user: 'root',
-        password: 'root',
-        database: 'employee_db'
-    }
- }
- const connection = mysql.createConnection(config);
+const Sequelize = require('sequelize');
 
 // Allows routes to be used outside of this file
 module.exports = function (myApp) {
 
-    const Sequelize = require('sequelize');
-    const sequelize = new Sequelize('Dealership_db', 'root', 'root', {
-        host: 'localhost',
-        dialect: 'mysql',
-        operatorsAliases: false,
-    });
-
+    const sequelize;
+    if (process.env.JAWSDB_URL) {
+        sequelize = new Sequelize(process.env.JAWSDB_URL);
+    }
+    else {
+        sequelize = new Sequelize('Dealership_db', 'root', 'root', {
+            host: 'localhost',
+            dialect: 'mysql',
+            operatorsAliases: false,
+        });
+    }
 
     // Gets dealers from db ordering by name
     myApp.get('/api/GetDealers/', function (req, res) {
@@ -41,7 +29,6 @@ module.exports = function (myApp) {
                 res.json({ error: error });
             });
     });
-
 
 
     // Add dealer information to db 
