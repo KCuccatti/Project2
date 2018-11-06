@@ -31,7 +31,7 @@ require('./routes/dealer-routes.js')(myApp);
 require('./routes/api-routes.js')(myApp);
 require('./routes/html-routes.js')(myApp);
 
-
+/*
 // Starts server on the predefined PORT
 db.sequelize.sync().then(function () {
   console.log("Db is synced");
@@ -39,3 +39,4 @@ db.sequelize.sync().then(function () {
     console.log('App listening on PORT ' + PORT);
   });
 })
+*/
