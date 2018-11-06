@@ -172,9 +172,17 @@ function findCar(response) {
             }
         }
         matchingCarsHtml += `<img src='${response[i].image}' width='200px;'/><br>`;
-        matchingCarsHtml += `Price: $${response[i].price}<br>`;
-        matchingCarsHtml += `Mileage: ${response[i].mileage}<br>`;
-        matchingCarsHtml += `Stock Number: ${response[i].stock_number}<br>`;
+        matchingCarsHtml += "<div>";
+        matchingCarsHtml += "<table class='carDetail'>";
+        matchingCarsHtml += `<tr><td align="left">Price:</td><td align="right">${response[i].price}</td></tr>`;
+        matchingCarsHtml += `<tr><td align="left">Body Style:</td><td align="right">${response[i].body_style}</td></tr>`;
+        matchingCarsHtml += `<tr><td align="left">Engine:</td><td align="right">${response[i].engine}</td></tr>`;
+        matchingCarsHtml += `<tr><td align="left">Transmission:</td><td align="right">${response[i].transmission}</td></tr>`;
+        matchingCarsHtml += `<tr><td align="left">Mileage:</td><td align="right">${response[i].mileage}</td></tr>`;
+        matchingCarsHtml += `<tr><td align="left">Stock Nbr:</td><td align="right">${response[i].stock_number}</td></tr>`;
+        matchingCarsHtml += "</table>";
+        matchingCarsHtml += "</div>";
+        
         matchingCarsHtml += "<hr style='border: 2px solid blue'>";
     }
 }

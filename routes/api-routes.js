@@ -1,6 +1,23 @@
 // Import in models 
 const db = require('../models');
 
+let config;
+
+ // Establish connection to db
+ if(process.env.JAWSDB_URL) {
+    config = process.env.JAWSDB_URL
+ }
+ else{
+    config = {
+        host: 'localhost',
+        port: 3306,
+        user: 'root',
+        password: 'root',
+        database: 'Dealership_db'
+    }
+ }
+ const connection = mysql.createConnection(config);
+
 // Allows routes to be used outside of this file
 module.exports = function (myApp) {
 
@@ -64,9 +81,8 @@ module.exports = function (myApp) {
 
     
     myApp.get('/api/FindCar/:year&:make&:model&:income', function (req, res) {
-        console.log('Inside of get route for car');
         let carQuery = 'SELECT D.name, D.address, D.city, D.state, D.zip, D.phone,' + 
-                       '       DI.year, DI.make, DI.model, DI.stock_number, DI.mileage, DI.income, DI.image, DI.price ' +
+                       'DI.year, DI.make, DI.model, DI.stock_number, DI.mileage, DI.income, DI.image, DI.price, DI.body_style, DI.engine, DI.transmission ' +
                        'FROM DealerInventory AS DI ' +
                        '   INNER JOIN Dealers AS D ON DI.dealer_id = D.id ' +
                        'WHERE DI.YEAR = :year AND DI.make = :make AND DI.model = :model AND DI.income <= :income ' +  
