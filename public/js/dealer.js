@@ -69,7 +69,6 @@ function ajaxAddDealer() {
 
 // Call back end with request to update existing dealer from db
 function ajaxUpdateDealer() {
-    alert('ID of record to be updated is: ' + dealerId);
     
     return $.ajax({
         type: "PUT",

@@ -1,23 +1,22 @@
 // Import tables in models
 const db = require('../models');
+const mysql = require("mysql2");
 
-let config;
 
 // Establish connection to db
-if (process.env.JAWSDB_URL) {
+if(process.env.JAWSDB_URL) {
     config = process.env.JAWSDB_URL
-}
-else {
+ }
+ else{
     config = {
         host: 'localhost',
         port: 3306,
         user: 'root',
         password: 'root',
-        database: 'Dealership_db'
+        database: 'employee_db'
     }
-}
-
-const connection = mysql.createConnection(config);
+ }
+ const connection = mysql.createConnection(config);
 
 // Allows routes to be used outside of this file
 module.exports = function (myApp) {
@@ -47,7 +46,6 @@ module.exports = function (myApp) {
 
     // Add dealer information to db 
     myApp.post('/api/AddDealer/:name&:address&:city&:state&:zip&:phone', function (req, res) {
-        console.log("inside of post");
         let addDealerQuery = 'INSERT INTO Dealers (name, address, city, state, zip, phone) VALUES' +
             ' (:name, :address, :city, :state, :zip, :phone)';
         sequelize.query(addDealerQuery,
@@ -70,7 +68,6 @@ module.exports = function (myApp) {
 
     // Update existing dealer in db 
     myApp.put('/api/UpdateDealer/:id&:name&:address&:city&:state&:zip&:phone', function (req, res) {
-        console.log("Made it to update backend");
         let updateDealerQuery = 'UPDATE Dealers SET name = :name, address=:address, city=:city, state=:state, zip=:zip, ' +
             'phone=:phone WHERE id=:id';
         sequelize.query(updateDealerQuery,
