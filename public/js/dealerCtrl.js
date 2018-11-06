@@ -1,5 +1,5 @@
 
-app.controller("DealerCtrl", function ($scope, dealerService, $http) {
+app.controller("DealerCtrl", function ($scope, dealerService, $http, $window) {
     // Call the dealerService to fetch the data for the dealers
     dealerService.query(function (data) {
         // Store the data from the dealers in scope for later use
@@ -32,12 +32,13 @@ app.controller("DealerCtrl", function ($scope, dealerService, $http) {
         console.log(id)
         $http.delete('/api/DeleteDealer/' + id)
             .then(function () {
-                $scope.refresh();
+                $window.location.href = 'http://localhost:8080/AddDealer';
             });
     }
 
     // Refresh function to occur after deleting of row occurs
     $scope.refresh = function(){
-        $http.get('/api/users');
+        $http.get('/AddDealer');
     }
 })
+
