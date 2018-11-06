@@ -1,11 +1,28 @@
 // Import in models 
 const db = require('../models');
-const Sequelize = require('sequelize');
+const mysql = require('mysql');
+
+let config;
+
+ // Establish connection to db
+ if(process.env.JAWSDB_URL) {
+    config = process.env.JAWSDB_URL
+ }
+ else{
+    config = {
+        host: 'localhost',
+        port: 3306,
+        user: 'root',
+        password: 'root',
+        database: 'employee_db'
+    }
+ }
+ const connection = mysql.createConnection(config);
 
 // Allows routes to be used outside of this file
 module.exports = function (myApp) {
-
-    const sequelize;
+/*
+    let sequelize;
     if (process.env.JAWSDB_URL) {
         sequelize = new Sequelize(process.env.JAWSDB_URL);
     }
@@ -16,6 +33,7 @@ module.exports = function (myApp) {
             operatorsAliases: false,
         });
     }
+    */
 
     // Gets vehicle years from database 
     myApp.get('/api/VehicleYears', function (req, res) {
