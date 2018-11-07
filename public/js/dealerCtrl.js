@@ -5,7 +5,7 @@ app.controller("DealerCtrl", function ($scope, dealerService, $http, $window) {
         // Store the data from the dealers in scope for later use
         $scope.dealers = data;
     }, function (err) {
-        console.error("Error occured: ", err);
+        console.log("Error occured: ", err);
     })
 
 
