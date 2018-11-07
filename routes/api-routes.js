@@ -71,7 +71,7 @@ module.exports = function (myApp) {
             'FROM DealerInventory AS DI ' +
             '   INNER JOIN Dealers AS D ON DI.dealer_id = D.id ' +
             'WHERE DI.YEAR = :year AND DI.make = :make AND DI.model = :model AND DI.income <= :income ' +
-            'ORDER BY D.name';
+            'ORDER BY DI.price';
         db.sequelize.query(carQuery,
             {
                 replacements: {
