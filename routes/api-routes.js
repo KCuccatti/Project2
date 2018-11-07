@@ -1,11 +1,16 @@
 // Import in models 
 const db = require('../models');
-const mysql = require('mysql');
 
-let config;
+/* This code is from EmployeeFinder project to help you
+* figure out what was done to make the db deployment to 
+* heroku for that project work. This is the code Andrew
+* gave me to make jaws work for that project. Perhaps it 
+* can be used here but we would to figure out what to do 
+* with the db.sync() in server.js because that and 
+* 'Sequelize = new Sequelize...' in both route files is 
+* how it is connecting now. 
 
- // Establish connection to db
- if(process.env.JAWSDB_URL) {
+if(process.env.JAWSDB_URL) {
     config = process.env.JAWSDB_URL
  }
  else{
@@ -19,26 +24,24 @@ let config;
  }
  const connection = mysql.createConnection(config);
 
+ */
+
 // Allows routes to be used outside of this file
 module.exports = function (myApp) {
-/*
-    let sequelize;
-    if (process.env.JAWSDB_URL) {
-        sequelize = new Sequelize(process.env.JAWSDB_URL);
-    }
-    else {
-        sequelize = new Sequelize('Dealership_db', 'root', 'root', {
-            host: 'localhost',
-            dialect: 'mysql',
-            operatorsAliases: false,
-        });
-    }
-    */
+
+    /*
+    const Sequelize = require('sequelize');
+    const sequelize = new Sequelize('Dealership_db', 'root', 'root', {
+        host: 'localhost',
+        dialect: 'mysql',
+        operatorsAliases: false,
+    });
+*/
 
     // Gets vehicle years from database 
     myApp.get('/api/VehicleYears', function (req, res) {
         let yearQuery = 'SELECT DISTINCT year FROM VehicleModelYear ORDER BY year DESC';
-        sequelize.query(yearQuery, { type: sequelize.QueryTypes.SELECT }
+        db.sequelize.query(yearQuery, { type: db.sequelize.QueryTypes.SELECT }
         ).then(function (response) {
             res.json(response);
         }).catch(function (error) {
@@ -52,10 +55,10 @@ module.exports = function (myApp) {
     // Gets vehicle makes based on vehicle year selected from database
     myApp.get('/api/GetMakesForYear/:year', function (req, res) {
         let makeQuery = 'SELECT DISTINCT make FROM VehicleModelYear WHERE year = :year';
-        sequelize.query(makeQuery,
+        db.sequelize.query(makeQuery,
             {
                 replacements: { year: req.params.year },
-                type: sequelize.QueryTypes.SELECT
+                type: db.sequelize.QueryTypes.SELECT
             }
         ).then(function (response) {
             res.json(response);
@@ -71,10 +74,10 @@ module.exports = function (myApp) {
     myApp.get('/api/GetModelsForYearAndMake/:year&:make', function (req, res) {
         console.log("Getting ready to get models from back end and make query call...");
         let modelQuery = 'SELECT DISTINCT model FROM VehicleModelYear WHERE year = :year AND make = :make';
-        sequelize.query(modelQuery,
+        db.sequelize.query(modelQuery,
             {
                 replacements: { year: req.params.year, make: req.params.make },
-                type: sequelize.QueryTypes.SELECT
+                type: db.sequelize.QueryTypes.SELECT
             }
         ).then(function (response) {
             res.json(response);
@@ -93,12 +96,12 @@ module.exports = function (myApp) {
             '   INNER JOIN Dealers AS D ON DI.dealer_id = D.id ' +
             'WHERE DI.YEAR = :year AND DI.make = :make AND DI.model = :model AND DI.income <= :income ' +
             'ORDER BY D.name';
-        sequelize.query(carQuery,
+        db.sequelize.query(carQuery,
             {
                 replacements: {
                     year: req.params.year, make: req.params.make, model: req.params.model, income: req.params.income
                 },
-                type: sequelize.QueryTypes.SELECT
+                type: db.sequelize.QueryTypes.SELECT
             }
         ).then(function (response) {
             res.json(response);

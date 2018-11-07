@@ -1,46 +1,22 @@
 // Import tables in models
 const db = require('../models');
-const mysql = require('mysql');
-
-let config;
-
- // Establish connection to db
- if(process.env.JAWSDB_URL) {
-    config = process.env.JAWSDB_URL
- }
- else{
-    config = {
-        host: 'localhost',
-        port: 3306,
-        user: 'root',
-        password: 'root',
-        database: 'employee_db'
-    }
- }
- const connection = mysql.createConnection(config);
-
 
 // Allows routes to be used outside of this file
 module.exports = function (myApp) {
 /*
-    const sequelize;
-    if (process.env.JAWSDB_URL) {
-        sequelize = new Sequelize(process.env.JAWSDB_URL);
-    }
-    else {
-        sequelize = new Sequelize('Dealership_db', 'root', 'root', {
-            host: 'localhost',
-            dialect: 'mysql',
-            operatorsAliases: false,
-        });
-    }
-    */
+    const Sequelize = require('sequelize');
+    const sequelize = new Sequelize('Dealership_db', 'root', 'root', {
+        host: 'localhost',
+        dialect: 'mysql',
+        operatorsAliases: false,
+    });
+*/
 
     // Gets dealers from db ordering by name
     myApp.get('/api/GetDealers/', function (req, res) {
         let getDealerQuery = 'SELECT * FROM Dealers ORDER BY name';
-        sequelize.query(getDealerQuery,
-            { type: sequelize.QueryTypes.SELECT }).then(function (response) {
+        db.sequelize.query(getDealerQuery,
+            { type: db.sequelize.QueryTypes.SELECT }).then(function (response) {
                 res.json(response);
             }).catch(function (error) {
                 console.log("AN ERROR OCCURED WHILE FETCHING Dealers");
@@ -50,17 +26,19 @@ module.exports = function (myApp) {
     });
 
 
+
     // Add dealer information to db 
     myApp.post('/api/AddDealer/:name&:address&:city&:state&:zip&:phone', function (req, res) {
+        console.log("inside of post");
         let addDealerQuery = 'INSERT INTO Dealers (name, address, city, state, zip, phone) VALUES' +
             ' (:name, :address, :city, :state, :zip, :phone)';
-        sequelize.query(addDealerQuery,
+        db.sequelize.query(addDealerQuery,
             {
                 replacements: {
                     name: req.params.name, address: req.params.address, city: req.params.city, state: req.params.state,
                     zip: req.params.zip, phone: req.params.phone
                 },
-                type: sequelize.QueryTypes.INSERT
+                type: db.sequelize.QueryTypes.INSERT
             }
         ).then(function (response) {
             res.json(response);
@@ -74,15 +52,16 @@ module.exports = function (myApp) {
 
     // Update existing dealer in db 
     myApp.put('/api/UpdateDealer/:id&:name&:address&:city&:state&:zip&:phone', function (req, res) {
+        console.log("Made it to update backend");
         let updateDealerQuery = 'UPDATE Dealers SET name = :name, address=:address, city=:city, state=:state, zip=:zip, ' +
             'phone=:phone WHERE id=:id';
-        sequelize.query(updateDealerQuery,
+        db.sequelize.query(updateDealerQuery,
             {
                 replacements: {
                     id: req.params.id, name: req.params.name, address: req.params.address, city: req.params.city, state: req.params.state,
                     zip: req.params.zip, phone: req.params.phone
                 },
-                type: sequelize.QueryTypes.UPDATE
+                type: db.sequelize.QueryTypes.UPDATE
             }
         ).then(function (response) {
             res.json(response);
@@ -96,12 +75,12 @@ module.exports = function (myApp) {
     // Delete existing dealer in db 
     myApp.delete('/api/DeleteDealer/:id', function (req, res) {
         let deleteDealerQuery = 'DELETE FROM Dealers WHERE id=:id';
-        sequelize.query(deleteDealerQuery,
+        db.sequelize.query(deleteDealerQuery,
             {
                 replacements: {
                     id: req.params.id,
                 },
-                type: sequelize.QueryTypes.DELETE
+                type: db.sequelize.QueryTypes.DELETE
             }
         ).then(function (response) {
             res.json(response);
