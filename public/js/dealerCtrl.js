@@ -1,5 +1,5 @@
 
-app.controller("DealerCtrl", function ($scope, dealerService, $http, $window) {
+app.controller("DealerCtrl", function ($scope, dealerService, $https, $window) {
     // Call the dealerService to fetch the data for the dealers
     dealerService.query(function (data) {
         // Store the data from the dealers in scope for later use
