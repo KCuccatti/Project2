@@ -1,30 +1,6 @@
 // Import in models 
 const db = require('../models');
 
-/* This code is from EmployeeFinder project to help you
-* figure out what was done to make the db deployment to 
-* heroku for that project work. This is the code Andrew
-* gave me to make jaws work for that project. Perhaps it 
-* can be used here but we would to figure out what to do 
-* with the db.sync() in server.js because that and 
-* 'Sequelize = new Sequelize...' in both route files is 
-* how it is connecting now. 
-
-if(process.env.JAWSDB_URL) {
-    config = process.env.JAWSDB_URL
- }
- else{
-    config = {
-        host: 'localhost',
-        port: 3306,
-        user: 'root',
-        password: 'root',
-        database: 'employee_db'
-    }
- }
- const connection = mysql.createConnection(config);
-
- */
 
 // Allows routes to be used outside of this file
 module.exports = function (myApp) {

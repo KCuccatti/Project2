@@ -9,9 +9,16 @@ console.log("The Environment is: " + env);
 var config = require(__dirname + '/../config/config.js')[env];
 var db = {};
 
-if (config.use_env_variable) {
+if (env==="production") {
   console.log("Using PROD STUFF");
-  var sequelize = new Sequelize(process.env[config.use_env_variable]);
+  //var sequelize = new Sequelize(process.env[config.use_env_variable]);
+  //var sequelize = new Sequelize(config.process.env[config.use_env_variable]);
+  console.log("Using Environment Variables");
+  console.log("User Name: " + process.env.MYSQL_PROD_USER);
+  console.log("Database: " + process.env.MYSQL_PROD_DBNAME);
+  console.log("Host: " + process.env.MYSQL_PROD_HOST);
+  console.log("THE DATABSE: " + config.database);
+  var sequelize = new Sequelize(config.database, config.username, config.password, config);
 } else {
   console.log("Using Environment Variables");
   console.log("User Name: " + process.env.MYSQL_DEV_USER);
