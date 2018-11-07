@@ -32,7 +32,7 @@ app.controller("DealerCtrl", function ($scope, dealerService, $http, $window) {
         console.log(id)
         $http.delete('/api/DeleteDealer/' + id)
             .then(function () {
-                $window.location.href = 'http://localhost:8080/AddDealer';
+                $window.location.href = '/AddDealer';
             });
     }
 
